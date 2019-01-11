@@ -12,6 +12,8 @@ factorial.compare: factorial.out factorial.tmp.out
 	# "factorial with template meta programming"
 	time ./factorial.tmp.out
 
+compare: factorial.compare
+	# make all compare finished
 
 clean:
 	rm *.out
