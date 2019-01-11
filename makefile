@@ -1,8 +1,10 @@
+CC=g++
+
 factorial.out : factorial.cpp
-	g++ factorial.cpp -o factorial.out
+	$(CC) $^ -o $@
 
 factorial.tmp.out: factorial.tmp.cpp
-	g++ factorial.tmp.cpp -o factorial.tmp.out
+	$(CC) $^ -o $@
 
 factorial.compare: factorial.out factorial.tmp.out
 	# "factorial"

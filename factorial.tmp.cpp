@@ -1,5 +1,6 @@
 #include <cstdint>
 #include <iostream>
+#include "cpp.tmp.hpp"
 
 template <int N>
 struct Factorial {
@@ -13,8 +14,7 @@ struct Factorial<0> {
 
 
 int main() {
-  for (int i = 10000000; i > 0; i--) {
-    // fatorial(10);
+  for (int i = 0; i < kLOOP_TIMES; i++) {
     int x = Factorial<10>::value;
   }
 
