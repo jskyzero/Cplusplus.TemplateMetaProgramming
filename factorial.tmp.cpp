@@ -1,6 +1,5 @@
-#include <cstdint>
-#include <iostream>
-#include "cpp.tmp.hpp"
+#include <iostream> // for std::cout 
+#include "cpp.tmp.hpp"  // for kLOOP_TIMES
 
 template <int N>
 struct Factorial {

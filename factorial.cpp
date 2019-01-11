@@ -1,6 +1,5 @@
-#include <cstdint>
-#include <iostream>
-#include "cpp.tmp.hpp"
+#include <iostream> // for std::cout 
+#include "cpp.tmp.hpp"  // for kLOOP_TIMES
 
 int fatorial(int n) { return n == 0 ? 1 : n * fatorial(n - 1); }
 
