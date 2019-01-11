@@ -1,10 +1,14 @@
 CC=g++
+FLAG= -std=c++98
+
+vector.out : vector.cpp
+	$(CC) $(FLAG) $^ -o $@
 
 factorial.out : factorial.cpp
-	$(CC) $^ -o $@
+	$(CC) $(FLAG) $^ -o $@
 
 factorial.tmp.out: factorial.tmp.cpp
-	$(CC) $^ -o $@
+	$(CC) $(FLAG) $^ -o $@
 
 factorial.compare: factorial.out factorial.tmp.out
 	# "factorial"
