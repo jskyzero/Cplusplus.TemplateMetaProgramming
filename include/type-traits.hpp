@@ -1,3 +1,6 @@
+#include <typeinfo> // for typeid()
+
+
 #define TYPE_NAME(x) (typeid(x).name())
 
 template <typename MemPtrType>
