@@ -1,10 +1,12 @@
-# Cplusplus.TemplateMetaProgramming
+# Cplusplus.TemplateMetaProgramming.Effective
 
-[![Build Status](https://travis-ci.com/oYOvOYo/Playground.svg?branch=cpp.tmp)](https://travis-ci.com/oYOvOYo/Playground)
+[![Build Status](https://travis-ci.com/oYOvOYo/Playground.svg?branch=cpp.tmp.effetive)](https://travis-ci.com/oYOvOYo/Playground)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/oYOvOYo/Playground/tree/cpp.tmp.effetive)
+
 
 ## Overview
 
-This project aims to compare the template metaprogramming effective with origin methods in cplusplus, in fact this could do in a more fair way, but anyhow, this is only a example.
+This project aims to compare the template metaprogramming's effectiveness with origin methods in cplusplus, in fact this could do in a more fair way, but anyhow, this is only a example.
 
 + compile time class generation
   + programming at compile time, see the factorial example.
