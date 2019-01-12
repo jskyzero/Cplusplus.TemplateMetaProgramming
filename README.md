@@ -1,7 +1,7 @@
 # Cplusplus.TemplateMetaProgramming.Effective
 
-[![Build Status](https://travis-ci.com/oYOvOYo/Playground.svg?branch=cpp.tmp.effetive)](https://travis-ci.com/oYOvOYo/Playground)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/oYOvOYo/Playground/tree/cpp.tmp.effetive)
+[![Build Status](https://travis-ci.com/oYOvOYo/Playground.svg?branch=Cplusplus.TemplateMetaProgramming.Effective)](https://travis-ci.com/oYOvOYo/Playground)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/oYOvOYo/Playground/tree/Cplusplus.TemplateMetaProgramming.Effective)
 
 
 ## Overview
@@ -49,7 +49,7 @@ time ././bin/polymorphic.tmp.out
 
 so we could see, the template metaprogramming could save time in runtime, for the verter example, the oprimization may not be clearly, this could be oprimization makes no difference when for loop does't need much time.
 
-## reference
+## Reference
 
 + [Compile_time_function_execution](https://en.wikipedia.org/wiki/Compile_time_function_execution)
 + [Template_metaprogramming](https://en.wikipedia.org/wiki/Template_metaprogramming)
