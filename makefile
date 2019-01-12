@@ -19,6 +19,9 @@ $(BIN_DIR)/main.out : $(SRC_DIR)/main.cpp
 all: $(BIN_DIR)/main.out
 	# make all finished
 
+run: all
+	./$(BIN_DIR)/main.out
+
 clean:
 	-rm -rf $(BIN_DIR)
 	-rm -rf $(OBJ_DIR)
