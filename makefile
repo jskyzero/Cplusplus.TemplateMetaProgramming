@@ -13,6 +13,18 @@ FLAGS = -std=c++98 -o3 \
 
 $(shell mkdir -p $(BIN_DIR) $(OBJ_DIR))
 
+$(BIN_DIR)/polymorphic.out : $(SRC_DIR)/polymorphic.cpp
+	$(CC) $(FLAGS) $^ -o $@
+
+$(BIN_DIR)/polymorphic.tmp.out : $(SRC_DIR)/polymorphic.tmp.cpp
+	$(CC) $(FLAGS) $^ -o $@
+
+polymorphic.compare: $(BIN_DIR)/polymorphic.out $(BIN_DIR)/polymorphic.tmp.out
+	# "polymorphic"
+	time ./$(BIN_DIR)/polymorphic.out
+	# "polymorphic with template meta programming"
+	time ./$(BIN_DIR)/polymorphic.tmp.out
+
 $(BIN_DIR)/vector.out : $(SRC_DIR)/vector.cpp
 	$(CC) $(FLAGS) $^ -o $@
 
@@ -37,7 +49,7 @@ factorial.compare: $(BIN_DIR)/factorial.out $(BIN_DIR)/factorial.tmp.out
 	# "factorial with template meta programming"
 	time ./$(BIN_DIR)/factorial.tmp.out
 
-compare: factorial.compare vector.compare
+compare: factorial.compare vector.compare polymorphic.compare
 	# make all compare finished
 
 clean:
