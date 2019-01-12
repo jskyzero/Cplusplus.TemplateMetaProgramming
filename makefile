@@ -8,7 +8,7 @@ TEST_DIR = $(ROOT_DIR)/test
 
 
 CC = g++
-FLAGS = -std=c++98 -o3 \
+FLAGS = -std=c++11 -o3 \
 				-I $(ROOT_DIR) -I $(INC_DIR)
 
 $(shell mkdir -p $(BIN_DIR) $(OBJ_DIR))
