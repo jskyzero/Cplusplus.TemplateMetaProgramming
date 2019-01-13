@@ -1,0 +1,8 @@
+language: cpp
+
+script:
+  make run
+
+after_success:
+  # so, pass the test...
+  - echo '(￣▽￣)~*' cheers! 
