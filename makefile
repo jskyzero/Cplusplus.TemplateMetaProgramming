@@ -9,11 +9,14 @@ TEST_DIR = $(ROOT_DIR)/test
 
 CC = g++
 FLAGS = -std=c++11 -o3 \
-				-I $(ROOT_DIR) -I $(INC_DIR)
+	-I $(ROOT_DIR) -I $(INC_DIR)
 
 $(shell mkdir -p $(BIN_DIR) $(OBJ_DIR))
 
-$(BIN_DIR)/main.out : $(SRC_DIR)/main.cpp
+$(OBJ_DIR)/test.o: $(SRC_DIR)/test.cpp
+	$(CC) $(FLAGS) $^ -c -o $@
+
+$(BIN_DIR)/main.out : $(SRC_DIR)/main.cpp $(OBJ_DIR)/test.o
 	$(CC) $(FLAGS) $^ -o $@
 
 all: $(BIN_DIR)/main.out
