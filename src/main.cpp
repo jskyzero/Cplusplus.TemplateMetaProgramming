@@ -3,9 +3,11 @@
 #include "fraction.hpp"
 
 int main() {
-  TypeTraits_TEST();
-  Property_TEST();
+  // template part
+  // TypeTraits_TEST();
+  // Property_TEST();
 
+  // template metaprogramming part
   // Factorial_Part();
   Fraction_Part();
 

@@ -1,6 +1,18 @@
 // TODO: make fraction symbol complete
 
 #include <iostream>
+#include <cassert>
+
+template <int x, int y>
+struct GCD {
+  static const int result = GCD<y, x % y>::result;
+};
+
+template <int x>
+struct GCD<x, 0> {
+  static const int result = x;
+};
+
 
 template <int x_, int y_>
 struct Fraction {
@@ -22,8 +34,26 @@ void Print() {
   std::cout << "(" << fraction::x << "/" << fraction::y << ")";
 };
 
+
+void GCD_TEST() {
+  assert((GCD<0, 0>::result) == 0);
+  assert((GCD<1000, 0>::result) == 1000);
+  assert((GCD<0, 1000>::result) == 1000);
+
+  assert((GCD<1000, 1>::result) == 1);
+  assert((GCD<1, 1000>::result) == 1);
+
+  assert((GCD<54, 24>::result) == 6);
+  assert((GCD<24, 54>::result) == 6);
+
+  assert((GCD<24, -54>::result) == -6);
+  assert((GCD<-24, 54>::result) == 6);
+}
+
+
 void Fraction_Part() {
-  typedef Fraction<1, 3> x;
-  typedef ScalarMultiplication<2, x>::result result;
-  Print<result>();
+  // typedef Fraction<1, 3> x;
+  // typedef ScalarMultiplication<2, x>::result result;
+  // Print<result>();
+  GCD_TEST();
 }
