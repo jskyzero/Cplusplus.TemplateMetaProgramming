@@ -3,35 +3,45 @@
 #include <cassert>
 #include <iostream>
 
-template <int x, int y>
+typedef int TYPE;
+
+template <TYPE x_, TYPE y_>
+struct Pair {
+  static const TYPE x = x_;
+  static const TYPE y = y_;
+};
+
+template <TYPE x, TYPE y>
 struct GCD {
-  static const int result = GCD<y, x % y>::result;
+  static const TYPE result = GCD<y, x % y>::result;
 };
 
-template <int x>
+template <TYPE x>
 struct GCD<x, 0> {
-  static const int result = x;
+  static const TYPE result = x;
 };
 
-template <int x_, int y_>
+template <TYPE x_, TYPE y_>
 struct Fraction {
-  static const int x = x_;
-  static const int y = y_;
+  static const TYPE gcd = GCD<x_, y_>::result;
+  typedef Pair<x_ / gcd, y_ / gcd> result;
+  static const TYPE x = result::x;
+  static const TYPE y = result::y;
 };
 
-template <int num, typename fraction>
+template <TYPE num, typename fraction>
 struct ScalarMultiplication {
   // ugly version
-  // static const int x = num * fraction::x;
-  // static const int y = fraction::y;
+  // static const TYPE x = num * fraction::x;
+  // static const TYPE y = fraction::y;
   // a better way
   typedef Fraction<num * fraction::x, fraction::y> result;
 };
 
-template <typename fraction>
-struct Simply {
-  static const int gcd = GCD<fraction::x, fraction::y>::result;
-  typedef Fraction<fraction::x / gcd, fraction::y / gcd> result;
+template <typename fraction1, typename fraction2>
+struct FractionMultiplication {
+  typedef Fraction<fraction1::x * fraction2::x, fraction1::y * fraction2::y>
+      result;
 };
 
 template <typename fraction>
@@ -60,6 +70,8 @@ void GCD_TEST() {
 void Fraction_Part() {
   typedef Fraction<1, 2> x;
   typedef ScalarMultiplication<2, x>::result result;
-  Print<result>();
+  typedef FractionMultiplication<x, result>::result result2;
+
+  Print<result2>();
   GCD_TEST();
 }
