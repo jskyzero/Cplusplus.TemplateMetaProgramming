@@ -39,9 +39,30 @@ struct ScalarMultiplication {
 };
 
 template <typename fraction1, typename fraction2>
-struct FractionMultiplication {
+struct Multiplication {
   typedef Fraction<fraction1::x * fraction2::x, fraction1::y * fraction2::y>
       result;
+};
+
+template <typename fraction1, typename fraction2>
+struct Addition {
+  typedef Fraction<fraction1::x * fraction2::y + fraction1::y * fraction2::x,
+                   fraction1::y * fraction2::y>
+      result;
+};
+
+template <typename fraction1, typename fraction2>
+struct Subtraction {
+  typedef Fraction<fraction1::x * fraction2::y - fraction1::y * fraction2::x,
+                   fraction1::y * fraction2::y>
+      result;
+};
+
+template <typename fraction1, typename fraction2>
+struct Division {
+  typedef Fraction<fraction2::y, fraction2::x> fraction2_;
+  // here should add a typename before the Multiplication
+  typedef typename Multiplication<fraction1, fraction2_>::result result;
 };
 
 template <typename fraction>
@@ -70,7 +91,7 @@ void GCD_TEST() {
 void Fraction_Part() {
   typedef Fraction<1, 2> x;
   typedef ScalarMultiplication<2, x>::result result;
-  typedef FractionMultiplication<x, result>::result result2;
+  typedef Multiplication<x, result>::result result2;
 
   Print<result2>();
   GCD_TEST();
