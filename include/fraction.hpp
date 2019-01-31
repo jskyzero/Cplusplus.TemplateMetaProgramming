@@ -1,7 +1,6 @@
-// TODO: make fraction symbol complete
-
-#include <cassert>
-#include <iostream>
+#include <cassert>   // for assert
+#include <iostream>  // for std::cout
+#include <string>    // for std::string
 
 typedef int TYPE;
 
@@ -10,6 +9,12 @@ struct Pair {
   static const TYPE x = x_;
   static const TYPE y = y_;
 };
+
+template <TYPE x>
+struct Abs {
+  static const TYPE result = x > 0 ? x : -x;
+};
+
 
 template <TYPE x, TYPE y>
 struct GCD {
@@ -23,51 +28,54 @@ struct GCD<x, 0> {
 
 template <TYPE x_, TYPE y_>
 struct Fraction {
-  static const TYPE gcd = GCD<x_, y_>::result;
-  typedef Pair<x_ / gcd, y_ / gcd> result;
-  static const TYPE x = result::x;
-  static const TYPE y = result::y;
+  static const TYPE gcd = GCD<Abs<x_>::result, Abs<y_>::result>::result;
+  //   x_  y_  x  y
+  //   +   +   +  +
+  //   +   -   -  +
+  //   -   +   -  +
+  //   -   -   +  +
+  static const TYPE sign = y_ < 0 ? -1 : 1;
+  static const TYPE x = sign * x_ / gcd;
+  static const TYPE y = Abs<y_>::result / gcd;
 };
 
-template <TYPE num, typename fraction>
+template <typename f1, typename f2>
+struct Addition {
+  typedef Fraction<f1::x * f2::y + f1::y * f2::x, f1::y * f2::y> result;
+};
+
+template <typename f1, typename f2>
+struct Subtraction {
+  typedef Fraction<f1::x * f2::y - f2::x * f1::y, f1::y * f2::y> result;
+};
+
+template <typename f1, typename f2>
+struct Multiplication {
+  typedef Fraction<f1::x * f2::x, f1::y * f2::y> result;
+};
+
+template <TYPE num, typename f>
 struct ScalarMultiplication {
   // ugly version
   // static const TYPE x = num * fraction::x;
   // static const TYPE y = fraction::y;
   // a better way
-  typedef Fraction<num * fraction::x, fraction::y> result;
+  // typedef Fraction<num * fraction::x, fraction::y> result;
+  typedef Fraction<num, 1> f_;
+  typedef typename Multiplication<f, f_>::result result;
 };
 
-template <typename fraction1, typename fraction2>
-struct Multiplication {
-  typedef Fraction<fraction1::x * fraction2::x, fraction1::y * fraction2::y>
-      result;
-};
-
-template <typename fraction1, typename fraction2>
-struct Addition {
-  typedef Fraction<fraction1::x * fraction2::y + fraction1::y * fraction2::x,
-                   fraction1::y * fraction2::y>
-      result;
-};
-
-template <typename fraction1, typename fraction2>
-struct Subtraction {
-  typedef Fraction<fraction1::x * fraction2::y - fraction1::y * fraction2::x,
-                   fraction1::y * fraction2::y>
-      result;
-};
-
-template <typename fraction1, typename fraction2>
+template <typename f1, typename f2>
 struct Division {
-  typedef Fraction<fraction2::y, fraction2::x> fraction2_;
+  typedef Fraction<f2::y, f2::x> f2_;
   // here should add a typename before the Multiplication
-  typedef typename Multiplication<fraction1, fraction2_>::result result;
+  typedef typename Multiplication<f1, f2_>::result result;
 };
 
 template <typename fraction>
-void Print() {
-  std::cout << "(" << fraction::x << "/" << fraction::y << ")";
+std::string FractionToString() {
+  return "( " + std::to_string(fraction::x) + " / " + std::to_string(fraction::y) +
+         " )";
 };
 
 void GCD_TEST() {
@@ -89,10 +97,22 @@ void GCD_TEST() {
 }
 
 void Fraction_Part() {
-  typedef Fraction<1, 2> x;
-  typedef ScalarMultiplication<2, x>::result result;
-  typedef Multiplication<x, result>::result result2;
-
-  Print<result2>();
   GCD_TEST();
+
+  typedef Fraction<1, -3> x;
+  typedef Fraction<-1, 2> y;
+  std::cout << "x     = " << FractionToString<x>() << std::endl;
+  std::cout << "y     = " << FractionToString<y>() << std::endl;
+  std::cout << "x + y = " << FractionToString<Addition<x, y>::result>()
+            << std::endl;
+  std::cout << "x - y = " << FractionToString<Subtraction<x, y>::result>()
+            << std::endl;
+  std::cout << "x * y = " << FractionToString<Multiplication<x, y>::result>()
+            << std::endl;
+  std::cout << "3 * x = "
+            << FractionToString<ScalarMultiplication<3, x>::result>()
+            << std::endl;
+  std::cout << "x / y = "
+            << FractionToString<Division<x, y>::result>()
+            << std::endl;
 }

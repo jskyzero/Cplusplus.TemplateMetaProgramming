@@ -22,7 +22,7 @@ void TypeTraits_TEST() {
       TYPE_NAME(SomeStruct),
       TYPE_NAME(GetMemPtrClass<decltype(&SomeStruct::SomeMember)>::Result));
 
-  std::cout << "Pass type-traits Test" << std::endl;
+  std::cout << "Pass type-traits test" << std::endl;
 }
 
 void Property_TEST() {
@@ -33,5 +33,5 @@ void Property_TEST() {
 
   assert_equal(sc.SomeMember, 10);
 
-  std::cout << "Pass property TEST" << std::endl;
+  std::cout << "Pass property test" << std::endl;
 }

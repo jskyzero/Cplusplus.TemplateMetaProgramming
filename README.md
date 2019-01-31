@@ -1,10 +1,34 @@
 # Cplusplus.TemplateMetaProgramming
-`jskyzero` `2019/01/14`
+[![](https://img.shields.io/badge/Author-jskyzero-brightgreen.svg?style=flat)]()
+[![](https://img.shields.io/badge/Data-2019/01/14-brightgreen.svg?style=flat)]()
+[![Build Status](https://travis-ci.com/oYOvOYo/Cplusplus.TemplateMetaProgramming.svg?branch=develop)](https://travis-ci.com/oYOvOYo/Cplusplus.TemplateMetaProgramming)
+[![](https://img.shields.io/badge/C%2B%2B-11-blue.svg?style=flat)]()
 
 ## Overview
 
-TODO
+Some codes about template in Cplusplus.
 
+### Fraction Part
+
++ Factorial
++ Fraction
++ ...
+
+### Template Part
+
++ TypeTraits
+```C++
+GetMemPtrType<decltype(&SomeStruct::SomeMember)>::Result;
+GetMemPtrClass<decltype(&SomeStruct::SomeMember)>::Result;
+```
+
++ Property
+```C++
+  SomeClass sc;
+  auto prop = Property<SomeClass, int>();
+  prop.Bind(&SomeClass::SomeMember);
+  prop.Set(sc, 10);
+```
 ### Effective Part
 
 This part aims to compare the template metaprogramming's effectiveness with origin methods in cplusplus, in fact this could do in a more fair way, but anyhow, this is only a example.
