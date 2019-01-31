@@ -12,5 +12,6 @@ struct Factorial<0> {
 
 
 void Factorial_Part() {
-  std::cout << Factorial<5>::result << std::endl;
+  std::cout << std::endl;
+  std::cout << "Factorial(5) = " << Factorial<5>::result << std::endl;
 }

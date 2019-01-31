@@ -11,7 +11,32 @@ Some codes about template in Cplusplus.
 ### Fraction Part
 
 + Factorial
+```C++
+void Factorial_Part() {
+  std::cout << Factorial<5>::result << std::endl;
+}
+```
 + Fraction
+```C++
+void Fraction_Part() {
+  typedef Fraction<1, -3> x;
+  typedef Fraction<-1, 2> y;
+  std::cout << "x     = " << FractionToString<x>() << std::endl;
+  std::cout << "y     = " << FractionToString<y>() << std::endl;
+  std::cout << "x + y = " << FractionToString<Addition<x, y>::result>()
+            << std::endl;
+  std::cout << "x - y = " << FractionToString<Subtraction<x, y>::result>()
+            << std::endl;
+  std::cout << "x * y = " << FractionToString<Multiplication<x, y>::result>()
+            << std::endl;
+  std::cout << "3 * x = "
+            << FractionToString<ScalarMultiplication<3, x>::result>()
+            << std::endl;
+  std::cout << "x / y = "
+            << FractionToString<Division<x, y>::result>()
+            << std::endl;
+}
+```
 + ...
 
 ### Template Part

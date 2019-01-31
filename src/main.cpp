@@ -1,6 +1,7 @@
 #include "test.hpp"
 #include "factorial.hpp"
 #include "fraction.hpp"
+#include "list.hpp"
 
 int main() {
  
@@ -11,8 +12,9 @@ int main() {
 
   // template metaprogramming part
   // 
-  // Factorial_Part();
-  // Fraction_Part();
+  Factorial_Part();
+  Fraction_Part();
+  List_Part();
 
   return 0;
 }

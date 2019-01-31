@@ -101,6 +101,8 @@ void Fraction_Part() {
 
   typedef Fraction<1, -3> x;
   typedef Fraction<-1, 2> y;
+
+  std::cout << std::endl;
   std::cout << "x     = " << FractionToString<x>() << std::endl;
   std::cout << "y     = " << FractionToString<y>() << std::endl;
   std::cout << "x + y = " << FractionToString<Addition<x, y>::result>()
