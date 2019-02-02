@@ -18,6 +18,7 @@ struct List {
   typedef T Tail;
 };
 
+// Length
 template <typename list>
 struct Length {
   static const size_t result = 1 + Length<typename list::Tail>::result;
@@ -28,6 +29,7 @@ struct Length<NIL> {
   static const size_t result = 0;
 };
 
+// ItemAt
 template <typename list, size_t N>
 struct ItemAt {
   typedef typename ItemAt<typename list::Tail, N - 1>::result result;
@@ -38,6 +40,7 @@ struct ItemAt<list, 0> {
   typedef typename list::Head result;
 };
 
+// ListToString
 template <typename list>
 std::string ListToString() {
   return "(" + std::to_string(list::Head::value) + ", " +
@@ -49,6 +52,7 @@ std::string ListToString<NIL>() {
   return std::string("NIL");
 };
 
+// CreateList
 template <TYPE... lists>
 struct CreateList {
   template <typename head, typename... tail>
@@ -71,14 +75,8 @@ void List_Part() {
   typedef CreateList<1, 2, 3>::result l1;
 
   std::cout << std::endl;
-  std::cout << "list = "
-            << "(1, (2, (3, NIL)))" << std::endl;
   std::cout << "list = " << ListToString<l1>() << std::endl;
   std::cout << "lenth(list) = " << Length<l1>::result << std::endl;
   std::cout << "itemAt(list, 0) = " << ItemAt<l1, 0>::result::value
-            << std::endl;
-  std::cout << "itemAt(list, 1) = " << ItemAt<l1, 1>::result::value
-            << std::endl;
-  std::cout << "itemAt(list, 2) = " << ItemAt<l1, 2>::result::value
             << std::endl;
 }
