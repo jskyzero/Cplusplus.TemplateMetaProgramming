@@ -49,10 +49,26 @@ std::string ListToString<NIL>() {
   return std::string("NIL");
 };
 
+template <TYPE... lists>
+struct CreateList {
+  template <typename head, typename... tail>
+  struct __CreateList {
+    typedef List<head, typename __CreateList<tail...>::result> result;
+  };
+
+  template <typename head>
+  struct __CreateList<head> {
+    typedef List<head> result;
+  };
+  typedef typename __CreateList<Type<lists>...>::result result;
+};
+
 void List_Part() {
-  typedef List<Type<3>> l3;
-  typedef List<Type<2>, l3> l2;
-  typedef List<Type<1>, l2> l1;
+  // typedef List<Type<3>> l3;
+  // typedef List<Type<2>, l3> l2;
+  // typedef List<Type<1>, l2> l1;
+
+  typedef CreateList<1, 2, 3>::result l1;
 
   std::cout << std::endl;
   std::cout << "list = "
