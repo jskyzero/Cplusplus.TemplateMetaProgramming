@@ -37,14 +37,50 @@ void Fraction_Part() {
             << std::endl;
 }
 ```
-+ ...
++ List
+```C++
+void List_Part() {
+  // typedef List<Type<3>> l3;
+  // typedef List<Type<2>, l3> l2;
+  // typedef List<Type<1>, l2> l1
+
+  typedef CreateList<1>::result l1;
+  typedef CreateList<1, 2, 3>::result l2;
+
+  std::cout << std::endl;
+  std::cout << "l1 = " << ListToString<l1>() << std::endl;
+  std::cout << "l2 = " << ListToString<l2>() << std::endl;
+  std::cout << "lenth(l2) = " << Length<l2>::result << std::endl;
+  std::cout << "itemAt(l2, 2) = " << ItemAt<l2, 2>::result::value << std::endl;
+  std::cout << "insertItemAt(l1, 0, 0) = "
+            << ListToString<InsertItemAt<l1, Type<0>, 0>::result>()
+            << std::endl;
+  std::cout << "insertItemAt(l1, 0, 0) = "
+            << ListToString<InsertItemAt<l1, Type<0>, 0>::result>()
+            << std::endl;
+  std::cout << "removeItemAt(l2, 0) = "
+            << ListToString<RemoveItemAt<l2, 0>::result>() << std::endl;
+  std::cout << "removeItemAt(l2, 2) = "
+            << ListToString<RemoveItemAt<l2, 2>::result>() << std::endl;
+  std::cout << "slice(l2, 0, 3) = " << ListToString<Slice<l2, 0, 3>::result>()
+            << std::endl;
+  std::cout << "slice(l2, 0, 1) = " << ListToString<Slice<l2, 0, 1>::result>()
+            << std::endl;
+  std::cout << "slice(l2, 1, 2) = " << ListToString<Slice<l2, 1, 2>::result>()
+            << std::endl;
+  std::cout << "slice(l2, 1, 3) = " << ListToString<Slice<l2, 1, 3>::result>()
+            << std::endl;
+  std::cout << "slice(l2, 0, 5) = " << ListToString<Slice<l2, 0, 5>::result>()
+            << std::endl;
+}
+```
 
 ### Template Part
 
 + TypeTraits
 ```C++
-GetMemPtrType<decltype(&SomeStruct::SomeMember)>::Result;
-GetMemPtrClass<decltype(&SomeStruct::SomeMember)>::Result;
+auto type1 = GetMemTypeFromMemPtr<decltype(&SomeStruct::SomeMember)>::Result;
+auto type2 = GetClassTypeFromMemPtr<decltype(&SomeStruct::SomeMember)>::Result;
 ```
 
 + Property
