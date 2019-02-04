@@ -1,3 +1,5 @@
+// todo: more operation on list like compare
+
 #include <algorithm>
 #include <iostream>
 

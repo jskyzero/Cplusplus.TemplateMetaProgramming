@@ -139,3 +139,4 @@ so we could see, the template metaprogramming could save time in runtime, for th
 
 + [Compile_time_function_execution](https://en.wikipedia.org/wiki/Compile_time_function_execution)
 + [Template_metaprogramming](https://en.wikipedia.org/wiki/Template_metaprogramming)
++ [introduction-to-c-template-metaprogramming](https://monoinfinito.wordpress.com/series/introduction-to-c-template-metaprogramming/)
