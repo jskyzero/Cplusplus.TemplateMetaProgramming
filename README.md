@@ -7,9 +7,25 @@
 
 ## Overview
 
-Some codes about template in Cplusplus.
+Some codes about template and template metaprogramming in Cplusplus.
 
-### Fraction Part
+### Template Part
+
++ TypeTraits
+```C++
+auto type1 = GetMemTypeFromMemPtr<decltype(&SomeStruct::SomeMember)>::Result;
+auto type2 = GetClassTypeFromMemPtr<decltype(&SomeStruct::SomeMember)>::Result;
+```
+
++ Property
+```C++
+  SomeClass sc;
+  auto prop = Property<SomeClass, int>();
+  prop.Bind(&SomeClass::SomeMember);
+  prop.Set(sc, 10);
+```
+
+### Template MetaProgramming Part
 
 + Factorial
 ```C++
@@ -76,21 +92,6 @@ void List_Part() {
 }
 ```
 
-### Template Part
-
-+ TypeTraits
-```C++
-auto type1 = GetMemTypeFromMemPtr<decltype(&SomeStruct::SomeMember)>::Result;
-auto type2 = GetClassTypeFromMemPtr<decltype(&SomeStruct::SomeMember)>::Result;
-```
-
-+ Property
-```C++
-  SomeClass sc;
-  auto prop = Property<SomeClass, int>();
-  prop.Bind(&SomeClass::SomeMember);
-  prop.Set(sc, 10);
-```
 ### Effective Part
 
 This part aims to compare the template metaprogramming's effectiveness with origin methods in cplusplus, in fact this could do in a more fair way, but anyhow, this is only a example.
